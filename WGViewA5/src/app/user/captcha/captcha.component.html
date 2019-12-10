@@ -1,0 +1,17 @@
+<form #captchaProtectedForm="ngForm" id="captcha">
+  <re-captcha [(ngModel)]="formModel.captcha"
+              name="captcha"
+              required (resolved)="resolved($event)"
+              siteKey="6LeVF2kUAAAAAOcjw_Ykt8rzsc1qTRl1ZaXCZ7jS"
+              #captchaControl="ngModel">
+  </re-captcha>
+</form>
+<div class="center">
+  <button class="center"
+          mat-raised-button
+          type="button"
+          [disabled]="!this.validReset"
+          (click)="formModel.captcha = ''">
+    {{'Register.ButtonReset'|translate}}
+  </button>
+</div>

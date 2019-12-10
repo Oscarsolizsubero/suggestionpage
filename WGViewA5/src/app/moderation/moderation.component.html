@@ -1,0 +1,49 @@
+<form class="padding">
+  <div>
+    <mat-label>{{'Moderation.LabelTitle'|translate}}</mat-label>
+    <p class="p12"></p>
+  </div>
+  <div>
+    <mat-checkbox [checked]="tenant.moderation" (change)="changeModeration()" color="primary">{{'Moderation.LabelApproval'|translate}}</mat-checkbox>
+  </div>
+
+  <div class="search">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="{{'Moderation.LabelSearch'|translate}}">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef style="max-width: 10%"> {{'Moderation.LabelTableNo'|translate}} </mat-header-cell>
+      <mat-cell *matCellDef="let element; let i = index;" style="max-width: 10%">{{i+1}}</mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="fullName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="max-width: 40%"> {{'Moderation.LabelTableName'|translate}} </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="max-width: 40%"> {{element.fullName}} </mat-cell>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="max-width: 40%"> {{'Moderation.LabelTableEmail'|translate}} </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="max-width: 40%"> {{element.email}} </mat-cell>
+    </ng-container>
+
+    <!-- Moderator Column -->
+    <ng-container matColumnDef="moderator">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="max-width: 10%"> {{('Moderation.LabelTableModerator'|translate|slice:0:3)+'.'}} </mat-header-cell>
+      <mat-cell class="check" *matCellDef="let row" style="max-width: 10%">
+        <mat-checkbox [checked]="row.moderator" (change)="changeLevel(row)" matTooltip="{{'Tooltip.CheckModerator'|translate}}" matTooltipPosition="right" color="primary">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]"></mat-paginator>
+</form>

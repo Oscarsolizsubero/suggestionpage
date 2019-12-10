@@ -1,0 +1,37 @@
+<form *ngIf="!loggedIn()" #loginForm="ngForm" (ngSubmit)="login()">
+  <div class="container">
+    <div>
+      <img src="../../assets/logo.png">
+    </div>
+    <br />
+    <div class="center">{{'Home.LabelLogin'|translate}}</div>
+    <br />
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="{{'Home.LabelUsername'|translate}}" text="text" required name="username" [(ngModel)]="model.name">
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-input-container>
+        <input matInput placeholder="{{'Home.LabelPassword'|translate}}" required name="password" [(ngModel)]="model.password" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide" matTooltip="{{'Tooltip.Hide'|translate}}">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </mat-input-container>
+    </div>
+    <div class="link">
+      <mat-label>
+        {{'Home.LabelRegister'|translate}}
+      </mat-label>
+      <a routerLink="/register">{{'Home.LinkRegister'|translate}}</a>
+    </div>
+    <div class="link">
+      <a routerLink="/reset-password">{{'Home.LinkResetPassword'|translate}}</a>
+    </div>
+    <br />
+    <div class="center">
+      <button mat-raised-button type="submit">
+        <mat-icon class="icon-button">input</mat-icon>{{'Home.ButtonLogin'|translate}}
+      </button>
+    </div>
+  </div>
+</form>

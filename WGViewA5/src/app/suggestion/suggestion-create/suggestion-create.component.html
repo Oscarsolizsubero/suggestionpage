@@ -1,0 +1,35 @@
+<form #createForm="ngForm" (ngSubmit)="create()" class="padding">
+  <mat-card>
+    <h3>{{'SuggestionCreate.LabelTitle'|translate}}</h3>
+    <p class="p24"></p>
+
+    <!-- title -->
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="{{'SuggestionCreate.LabelSubtitle'|translate}}" [(ngModel)]="model.title" required name="Title" maxlength="125">
+      </mat-form-field>
+    </div>
+
+    <!-- description -->
+    <div>
+      <mat-form-field>
+        <textarea matInput placeholder="{{'SuggestionCreate.LabelDescription'|translate}}" rows="10" required name="Description" [(ngModel)]="model.description" maxlength="8000"></textarea>
+      </mat-form-field>
+    </div>
+
+    <!-- buttons -->
+    <mat-card-header class="center">
+      <mat-card-actions>
+        <button mat-icon-button class="spacingRight32" type="submit" matTooltip="{{'Tooltip.Save'|translate}}" matTooltipPosition ="above">
+          <mat-icon>check</mat-icon>
+        </button>
+        <button mat-icon-button class="spacingRight32" type="button" (click)="undo()" matTooltip="{{'Tooltip.Clean'|translate}}" matTooltipPosition ="above">
+          <img src="../../../assets/icons/eraser.png">
+        </button>
+        <button mat-icon-button type="button" (click)="cancel()" *ngIf="isInCreate()" matTooltip="{{'Tooltip.Cancel'|translate}}" matTooltipPosition ="above">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card-header>
+  </mat-card>
+</form>

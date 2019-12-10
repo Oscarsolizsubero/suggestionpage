@@ -1,0 +1,141 @@
+<div *ngIf="isDataLoaded">
+  <form class="padding">
+    <mat-card>
+
+      <!-- title and more button -->
+      <mat-card-header class="space-between">
+        <div class="flex-start">
+          <mat-form-field>
+            <textarea matInput matTextareaAutosize class="taTitle" [(ngModel)]="model.title" name="Title" maxlength="125" [disabled]="!edit"></textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="buttonMore" *ngIf="enableOptions()" matTooltip="{{'Tooltip.Actions'|translate}}" matTooltipPosition="left">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #buttonMore="matMenu">
+            <button mat-menu-item *ngIf="enableEdit()" (click)="editbutton()">
+              <mat-icon>edit</mat-icon>{{'SuggestionDetail.ButtonEdit'|translate}}
+            </button>
+            <button mat-menu-item *ngIf="enableDelete()" (click)="openDialog()">
+              <mat-icon>delete</mat-icon>{{'SuggestionDetail.ButtonDelete'|translate}}
+            </button>
+          </mat-menu>
+        </div>
+      </mat-card-header>
+
+      <!-- description -->
+      <mat-card-header>
+        <mat-form-field>
+          <textarea matInput matTextareaAutosize required name="Description" [(ngModel)]="model.description" maxlength="8000" [disabled]="!edit"></textarea>
+        </mat-form-field>
+      </mat-card-header>
+      <p class="p12"></p>
+
+      <!-- editing -->
+      <mat-card-header class="center">
+        <mat-card-actions *ngIf="edit">
+          <button mat-icon-button class="spacingRight32" (click)="confirmedit()">
+            <mat-icon>check</mat-icon>
+          </button>
+          <button mat-icon-button (click)="canceledit()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <p class="p12"></p>
+        </mat-card-actions>
+      </mat-card-header>
+
+      <!-- status -->
+      <mat-card-header class="space-between">
+        <div class="flex-start">
+          <mat-card-header class="status" [ngStyle]="{'color': getColorStatus(model)}" *ngIf="showToolbarStatus()">
+            {{ getStatusById(model.status.id) | translate }}
+          </mat-card-header>
+        </div>
+        <p class="marginTop48"></p>
+        <div *ngIf="enableStatus()">
+          <mat-form-field class="select-state">
+            <mat-select placeholder="{{'SuggestionDetail.LabelStatus'|translate}}">
+              <mat-option *ngFor="let status of statuses" [value]="status.id" (click)="changeStatus(status)">
+                <span>{{ getStatusById(status.id) | translate }}</span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-card-header>
+
+      <!-- author and creation date -->
+      <mat-card-header class="space-between">
+        <div class="flex-start">
+          <mat-icon class="spacingRight16" disabled>person</mat-icon>
+          <mat-card-subtitle>
+            {{model.author.fullName | titlecase}}
+          </mat-card-subtitle>
+        </div>
+        <mat-card-content>
+          {{model.createdDate | date:'medium'}}
+        </mat-card-content>
+      </mat-card-header>
+
+      <!-- clipboard, facebook and vote -->
+      <mat-card-header class="space-between">
+        <mat-card-actions class="flex-start">
+          <button mat-button (click)="copyText(getURLDetailCopy(urlDetail))" matTooltip="{{'Tooltip.Clipboard'|translate}}" matTooltipPosition="below">
+            <i class="material-icons" style="color:#bdc1c4" aria-hidden="true">
+              file_copy
+            </i>
+          </button>
+          <button mat-button (click)="shareFacebook(urlDetail)" matTooltip="{{'Tooltip.Facebook'|translate}}" matTooltipPosition="below">
+            <img src="../../../assets/icons/facebook.png">
+          </button>
+        </mat-card-actions>
+        <mat-card-actions>
+          <button mat-button (click)="votebutton(model)" matTooltip="{{'Tooltip.Like'|translate}}" matTooltipPosition="below">
+            <mat-icon [ngStyle]="{'color': getColor(model.isVoted)}" aria-hidden="true">thumb_up_alt</mat-icon>
+            {{model.quantityVote}}
+          </button>
+        </mat-card-actions>
+      </mat-card-header>
+    </mat-card>
+
+    <!-- reply creation -->
+    <mat-expansion-panel class="expansion-reply" *ngIf="enableReply()" (opened)="setStep(1)" [expanded]="showExpansion===1">
+      <mat-expansion-panel-header>
+        <mat-label>{{'SuggestionDetail.LabelReply'|translate}}</mat-label>
+      </mat-expansion-panel-header>
+      <mat-card-header class="space-between-bottom">
+        <mat-form-field>
+          <textarea matInput rows="3" required name="Reply" maxlength="8000" [(ngModel)]="reply.description"></textarea>
+        </mat-form-field>
+        <mat-card-actions>
+          <button mat-icon-button (click)="createReply()" matTooltip="{{'Tooltip.Send'|translate}}" matTooltipPosition="above"><mat-icon>send</mat-icon></button>
+        </mat-card-actions>
+      </mat-card-header>
+    </mat-expansion-panel>
+
+    <!-- reply listing  -->
+    <div class="flex" *ngFor="let reply of replies">
+      <button mat-mini-fab class="spacingUser" disabled>{{(reply.author.fullName | slice:0:1 | titlecase)}}</button>
+      <mat-card class="reply">
+        <mat-card-header>
+          <mat-card-content class="taTitle">
+            {{(reply.author.fullName | titlecase)}}
+          </mat-card-content>
+        </mat-card-header>
+        <p class="p12"></p>
+        <mat-card-header>
+          <mat-card-content>
+            {{(reply.description)}}
+          </mat-card-content>
+        </mat-card-header>
+        <p class="p12"></p>
+        <mat-card-header>
+          <mat-card-content>
+            {{reply.createdDate | date:'medium'}}
+          </mat-card-content>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </form>
+</div>
+

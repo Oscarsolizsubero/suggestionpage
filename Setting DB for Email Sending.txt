@@ -1,0 +1,37 @@
+Setting up Database Mail for SQL Server
+1.- En Sql, desplegar la carpeta "Management".
+2.- En "Database Mail" click secundario y seleccionar "Configure Database Mail".
+3.- Nos saldrá la pestaña de Bienvenida, presionamos "Next".
+4.- En  la pestaña "Select Configuration Task" elegimos la primera opción.
+     En la ventana emergente hacer click en Yes.
+5.-  Dentro del TextBox escribimos "perfil1" (puede ser cualquier nombre pero es el que usamos en el query sql, pueden cambiar en el query y poner el mismo en este lugar).
+6.- En la descripción, información para el cual fue creado el perfil.
+7.- En la misma pestaña, en el lado derecho hacemos click en el botón "Add".
+8.- Creamos una cuenta (puede ser cualquiera sin importar la que este en el query para la DB) y una descripción corta.
+9.- Configuramos
+      - E-mail Address = su correo corporativo (aquí se puede configurar el que 
+                                     se usa en la empresa como soporte o RRHH).
+      - Displey Name = el nombre que va acompañado del E-mail Address 
+                                   (soporte <rarteaga@info-arch.com>).
+      - Reply e-mail = correo al cual se redirreccionan si hubiera error 
+                                  (coloquemos el mismo correo que en el E-mail Address).
+      -Server name = nombre del servidor smtp (smtp.info-arch.com este es el de 
+                                 la empresa y de sus correos).
+      - Puerto = 25.
+      - This server requires a secure connection (SSL) = destiqueado.
+       
+        SMTP AUTHENTICATION
+      - Click radioButton "Basic Authentication".
+      - User name = correo coorporativo (el mismo usado en el E-mail Address).
+      - Password = Contraseña de su correo.
+      - Confirm Password = Ingrese nuevamente su contraseña.
+Una ves llenado lo mencionado damos click en "OK".
+10.- Dentro la pestaña "New Profile", en el grid que visualizaremos, nos mostrara el SMTP account creado y damos click en "Next".
+11.- En la pestaña "Manage Profile Security", El grid  nos mostrara el profile name creado, lo tiqueamos y damos click en "Next".
+12.- Nos enviara a la Pestaña "Configure System Parameters", presionamos en "Next".
+13.- En la Pestaña "Complete the Wizard", click en "Finish".
+14.- Una ves realizado los paso nos debe mostrar un grid con 4 acciones que nos den como resultado "Success".
+15.- Finalmente damos click en "Close".
+
+Aquí dejo la pagina Web como referencia para la configuración de todo:
+https://www.mssqltips.com/sqlservertip/1100/setting-up-database-mail-for-sql-server/

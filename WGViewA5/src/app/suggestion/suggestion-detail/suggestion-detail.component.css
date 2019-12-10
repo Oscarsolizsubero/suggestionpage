@@ -1,0 +1,141 @@
+mat-card {
+  background-color: rgba(255,255,255,.95);
+  border-radius: 10px;
+  margin: 0px 0px 5px 0px;
+  padding: 1em;
+  padding-right: 20px;
+}
+
+.flex {
+  display: flex;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.space-between-bottom {
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.flex-start {
+  justify-content: flex-start;
+  flex: 1;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+}
+
+.center {
+  justify-content: center;
+}
+
+.mat-card-avatar {
+  border-radius: 0;
+}
+
+.spacingUser {
+  margin-right: 8px;
+  margin-top: 8px;
+}
+
+.spacingRight16 {
+  margin-right: 16px;
+}
+
+.spacingRight32 {
+  margin-right: 32px;
+}
+
+mat-card-title {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+mat-card-subtitle {
+  margin-bottom: -8px;
+}
+
+mat-card-content {
+  margin-right: 10px;
+  margin-bottom: 0;
+  align-self: center;
+}
+
+mat-card-actions {
+  align-items: center;
+  padding-right: 10px;
+  margin: 8px 0 0;
+}
+
+mat-form-field {
+  width: 100%;
+  padding-right: 10px;
+  text-align: justify;
+}
+
+.p12 {
+  margin-bottom: 12px;
+}
+
+.marginTop48 {
+  margin-top: 48px;
+}
+
+textarea:disabled {
+  color:black;
+}
+
+.taTitle {
+  font-weight: bold;
+}
+
+mat-expansion-panel {
+  padding-right: 0;
+}
+
+.mat-expansion-panel-header {
+  padding: 0 28px;
+}
+
+.mat-expansion-panel-header.mat-expanded:hover {
+  background-color: transparent;
+}
+
+.expansion-reply {
+  border-radius: 10px;
+  margin: 0px 0px 5px 0px;
+  background-color: rgba(255,255,255,.95);
+}
+
+.reply {
+  flex-grow: 1;
+}
+
+.mat-mini-fab[disabled] {
+  background-color: #006bb1;
+  color: white;
+}
+
+.status {
+  font-weight: bold;
+}
+
+
+.select-state {
+  margin-bottom: 12px;
+  margin-right: 10px;
+  height: 50px;
+  width: 120px;
+}
+
+.mat-button {
+  min-width: 50px;
+}
+
+button.mat-button {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}

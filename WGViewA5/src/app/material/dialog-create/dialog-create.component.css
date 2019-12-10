@@ -1,0 +1,15 @@
+* {
+  justify-content: center;
+}
+
+.mat-dialog-title {
+  color: #004d92;
+  text-align: center;
+}
+
+button {
+  color: white;
+  background-color: #006bb1;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  margin-bottom: 10px;
+}

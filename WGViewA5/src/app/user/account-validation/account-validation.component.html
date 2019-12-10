@@ -1,0 +1,26 @@
+<form #loginForm="ngForm" (ngSubmit)="ValidationUser()">
+  <mat-card>
+    <div class="center">
+      <img src="../../../assets/logo.png">
+    </div>
+    <h4>{{'AccountValidation.LabelWelcome'|translate}}</h4>
+    <br />
+    <div class="content">
+      <mat-label>{{'AccountValidation.LabelVerifcation'|translate}}</mat-label>
+      <p></p>
+      <mat-label>{{'AccountValidation.LabelInsertCode'|translate}}</mat-label>
+    </div>
+    <br />
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="{{'AccountValidation.LabelCode'|translate}}" text="text" autocomplete="off" required name="username" [(ngModel)]="model">
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="center">
+      <button mat-raised-button type="submit">
+        {{'AccountValidation.ButtonVerification'|translate}}
+      </button>
+    </div>
+  </mat-card>
+</form>

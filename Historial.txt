@@ -1,0 +1,19 @@
+git init
+git remote add origin https://Canitron@bitbucket.org/Canitron/wishgrid.git
+
+Appsetings Base de Datos
+Services Puerto API
+
+*********************************************************
+Repositorio Alterno
+git remote add origin git@172.30.0.12:/repos/wishgrid.git
+git remote add bitbucket https://Canitron@bitbucket.org/Canitron/wishgrid.git
+
+*********************************************************
+Repositorio Espejado
+git remote add origin //172.30.3.23/RemoteWG
+git remote set-url --add origin https://Canitron@bitbucket.org/Canitron/wishgrid.git
+
+*********************************************************
+Antigua configuracion
+git remote add origin git@172.30.0.12:/repos/wishgrid.git

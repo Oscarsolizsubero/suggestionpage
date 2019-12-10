@@ -1,0 +1,8 @@
+﻿Id,Address,NameTenants,Nit,Phone,Status,URLOrigin,Moderation,URLImage,URLTenant
+1,"canal cotoca 2do anillo", info-arch,00000,6666666,True,localhost:4200,True,"../../assets/tumomo.png",www.google.com
+2,"3er anillo paragua",OscarSRL,4605643,67878437,True,172.30.3.20:4200,True,"../../assets/tumomo.png",www.info-arch.com
+3,"la cuchilla",RichardSRL,6318451011,70288496,True,172.30.2.10:4200,True,"../../assets/tumomo.png",www.info-arch.com
+4,"direccion 4",WilberSRL,44444,123456,True,172.30.3.14:4200,True,"../../assets/tumomo.png",www.info-arch.com
+5,"direccion 5",MiguelSRL,55555,321654,True,172.30.3.23:4200,True,"../../assets/tumomo.png","http://www.tumomo.com"
+6,"direccion 6",NathieSRL,66666,321655,True,172.30.2.9:4200,True,"../../assets/tumomo.png",www.info-arch.com
+7,"direccion 7",OscarLauraSRL,77777,321655,True,172.30.3.22:4200,True,"../../assets/tumomo.png",www.info-arch.com

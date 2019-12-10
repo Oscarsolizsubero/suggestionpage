@@ -1,0 +1,85 @@
+<form class="padding">
+  <div *ngIf="ifToken()">
+    <app-suggestion-create></app-suggestion-create>
+  </div>
+  <div class="list">
+    <!-- search -->
+    <mat-card-header class="flex-start">
+      <div class="inputSearch">
+        <!-- input search -->
+        <mat-input-container>
+          <input matInput placeholder="{{'SuggestionList.LabelSearch'|translate}}" maxlength="50" name="Filters" [(ngModel)]="paginator.filters">
+          <button mat-icon-button matSuffix (click)="search()" matTooltip="{{'Tooltip.Search'|translate}}" matTooltipPosition="below">
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-input-container>
+      </div>
+      <div class="selectStatus">
+        <!-- status search -->
+        <mat-select placeholder="{{getCurrentStatus()}}" matTooltip="{{'Tooltip.Status'|translate}}" matTooltipPosition="below" matTooltipShowDelay="1000">
+          <mat-option *ngFor="let status of statuses" [value]="status.id" (click)="searchByStatus(status.id)">
+            <span>{{ getStatusById(status.id) | translate }}</span>
+          </mat-option>
+        </mat-select>
+      </div>
+    </mat-card-header>
+
+    <!-- searched label -->
+    <mat-card-header *ngIf="showSearchLabel">
+      <mat-label>{{'SuggestionList.LabelSearched'|translate}}{{searched}}</mat-label>
+    </mat-card-header>
+
+    <!-- not found label -->
+    <mat-card-header *ngIf="showResultLabel">
+      <mat-label class="not-found">{{'SuggestionList.LabelNotFound'|translate}}</mat-label>
+    </mat-card-header>
+
+    <!-- suggestion list -->
+    <mat-card *ngFor="let model of models">
+      <mat-card-header (click)="getDetail(model)" class="space-between">
+        <div class="flex-start">
+          <mat-card-title>
+            {{ (model.title.length>55)? (model.title| slice:0:55)+'...':(model.title)}}
+          </mat-card-title>
+        </div>
+        <div>
+          <mat-toolbar-row [ngStyle]="{'background-color': getColorStatus(model)}" *ngIf="showToolbarStatus(model)">
+            <span>{{ getStatusById(model.status.id) | translate }}</span>
+          </mat-toolbar-row>
+        </div>
+      </mat-card-header>
+      <mat-card-header (click)="getDetail(model)">
+        <mat-card-content>
+          {{(model.description.length>99)? (model.description| slice:0:99)+'...':(model.description)}}
+        </mat-card-content>
+      </mat-card-header>
+      <mat-card-header class="space-between">
+        <mat-card-actions class="flex-start">
+          <button mat-button (click)="copyText (getURLDetailCopy(urlDetail) +  model.id)" matTooltip="{{'Tooltip.Clipboard'|translate}}" matTooltipPosition="right">
+            <i class="material-icons" style="color:#bdc1c4" aria-hidden="true">
+              file_copy
+            </i>
+          </button>
+          <button mat-button (click)="shareFacebook(model)" matTooltip="{{'Tooltip.Facebook'|translate}}" matTooltipPosition="below">
+            <img src="../../../assets/icons/facebook.png">
+          </button>
+        </mat-card-actions>
+        <mat-card-actions>
+          <button mat-button (click)="votebutton(model)" matTooltip="{{'Tooltip.Like'|translate}}" matTooltipPosition="below">
+            <mat-icon [ngStyle]="{'color': getColor(model.isVoted)}" aria-hidden="true">thumb_up_alt</mat-icon>
+            {{model.quantityVote}}
+          </button>
+        </mat-card-actions>
+      </mat-card-header>
+    </mat-card>
+
+    <!-- show more button -->
+    <div class="btn-showMore">
+      <button mat-button *ngIf="showMoreButton" (click)="nextPage()" [disabled]="disabled" matTooltip="{{'Tooltip.ShowMore'|translate}}" matTooltipPosition="above">
+        <mat-label>{{'SuggestionList.ButtonShowMore'|translate}}</mat-label>
+        <mat-icon>expand_more</mat-icon>
+      </button>
+    </div>
+  </div>
+</form>
+<app-footer></app-footer>

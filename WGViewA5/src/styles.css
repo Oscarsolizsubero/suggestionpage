@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@viewport {
+  zoom: 1.0;
+  width: device-width;
+}
+
+body {
+  background-color: #f0f4f7;
+}
+
+mat-icon {
+  color: #006bb1;
+}
+
+.padding {
+  padding: 1em 1em 3em 1em;
+}

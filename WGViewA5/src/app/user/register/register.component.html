@@ -1,0 +1,66 @@
+<form #createForm="ngForm">
+  <mat-card>
+    <h3>{{'Register.LabelTitle'|translate}}</h3>
+
+    <!-- Profile -->
+    <div [formGroup]="registrationProfileGroup" *ngIf="showProfile">
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="{{'Register.LabelName'|translate}}" text="text" required name="name" formControlName="name" [(ngModel)]="model.name">
+        </mat-form-field>
+      </div>
+      <p class="lb-danger" *ngIf="registrationProfileGroup.controls.name.errors?.required && registrationProfileGroup.controls.name.touched">{{'Register.DangerName'|translate}}</p>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="{{'Register.LabelLastName'|translate}}" text="text" required name="lastname" formControlName="lastname" [(ngModel)]="model.lastName">
+        </mat-form-field>
+      </div>
+      <p class="lb-danger" *ngIf="registrationProfileGroup.controls.lastname.errors?.required && registrationProfileGroup.controls.lastname.touched">{{'Register.DangerLastName'|translate}}</p>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="{{'Register.LabelEmail'|translate}}" required name="email" formControlName="email" [(ngModel)]="model.email">
+        </mat-form-field>
+      </div>
+      <p class="lb-danger" *ngIf="registrationProfileGroup.controls.email.errors?.required && registrationProfileGroup.controls.email.touched">{{'Register.DangerEmail'|translate}}</p>
+      <div class="right">
+        <button mat-raised-button (click)="enableAccount()" [disabled]="!registrationProfileGroup.valid" matTooltip="{{'Tooltip.Next'|translate}}" matTooltipPosition="left">{{'Register.ButtonNext'|translate}}</button>
+      </div>
+    </div>
+
+    <!-- Account -->
+    <div *ngIf="showAccount">
+      <!--<div>
+        <mat-form-field>
+          <input matInput placeholder="{{'Register.LabelUserName'|translate}}" text="text" required name="username" formControlName="username" [(ngModel)]="model.username">
+        </mat-form-field>
+      </div>
+      <p class="lb-danger" *ngIf="registrationAccountGroup.controls.username.errors?.required && registrationAccountGroup.controls.username.touched">{{'Register.DangerUserName'|translate}}</p>-->
+
+      <div [formGroup]="passwordAccountGroup">
+        <div>
+          <mat-input-container>
+            <input matInput placeholder="{{'Register.LabelPassword'|translate}}" required name="newPassword" [type]="hide ? 'text' : 'password'" formControlName="newPassword">
+          </mat-input-container>
+        </div>
+        <p class="lb-danger" *ngIf="passwordAccountGroup.controls.newPassword.errors?.required && passwordAccountGroup.controls.newPassword.touched">{{'Register.DangerPassword'|translate}}</p>
+        <div>
+          <mat-input-container>
+            <input matInput placeholder="{{'Register.LabelConfirmPassword'|translate}}" required name="confirmPassword" [type]="hide ? 'text' : 'password'" formControlName="confirmPassword" [(ngModel)]="model.password">
+            <mat-icon matSuffix (click)="hide = !hide" matTooltip="{{'Tooltip.Hide'|translate}}">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          </mat-input-container>
+        </div>
+        <p class="lb-danger" *ngIf="passwordAccountGroup.controls.confirmPassword.errors?.required && passwordAccountGroup.controls.confirmPassword.touched">{{'Register.DangerConfirmPassword'|translate}}</p>
+        <p class="lb-danger" *ngIf="passwordAccountGroup.errors?.doesMatchPassword">{{'Register.DangerValidationPassword'|translate}}</p>
+      </div>
+
+      <app-captcha (messageEvent)="receiveMessage($event)"></app-captcha>
+      <p></p>
+
+      <div class="center">
+        <button mat-raised-button class="spacingRight32" (click)="enableProfile()">{{'Register.ButtonReturn'|translate}}</button>
+        <button mat-raised-button (click)="userRegister()" type="submit" [disabled]="!passwordAccountGroup.valid || !this.validReCaptcha">{{'Register.ButtonFinish'|translate}}</button>
+      </div>
+    </div>
+
+  </mat-card>
+</form>

@@ -1,0 +1,24 @@
+mat-toolbar {
+  background-color: #006bb1;
+  color: white;
+}
+
+span {
+  flex: 1 1 auto;
+}
+
+.mat-menu-item {
+  font-size: 15px;
+}
+
+mat-icon {
+  font-size: 20px;
+}
+
+.icon-button {
+  color: white;
+}
+
+.mat-button {
+  padding: 0;
+}

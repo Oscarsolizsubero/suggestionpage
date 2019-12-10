@@ -1,0 +1,43 @@
+<mat-toolbar>
+  <!--<button mat-button (click)="gotoList()">{{'Nav.LabelTitle'|translate}}</button>-->
+  <button mat-icon-button (click)="gotoList()" matTooltip="{{'Tooltip.Home'|translate}}" matTooltipPosition="right">
+    <i class="material-icons">home</i>
+  </button>
+  <span></span>
+  <button mat-button (click)="goSiteTenant()" matTooltip="{{'Tooltip.Tenant'|translate}}" matTooltipPosition="below">
+    <img src="{{this.FullTenant.urlImage}}" style="width:130px">
+  </button>
+  <span></span>
+  <button mat-button routerLink="/home" *ngIf="showLogin()">
+    {{'Nav.ButtonLogin'|translate}}
+    <mat-icon class="icon-button">input</mat-icon>
+  </button>
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn()">
+    {{authService.decodedToken?.unique_name}}
+    <i class="material-icons">perm_identity</i>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="gotoAbout()">
+      <mat-icon>info</mat-icon>{{'Nav.ButtonAbout'|translate}}
+    </button>
+    <button mat-menu-item [matMenuTriggerFor]="language">
+      <mat-icon>language</mat-icon>{{'Nav.ButtonLanguage'|translate}}
+    </button>
+    <button mat-menu-item [matMenuTriggerFor]="account">
+      <mat-icon>account_circle</mat-icon>{{'Nav.ButtonAccount'|translate}}
+    </button>
+    <button mat-menu-item (click)="gotoModeration()" *ngIf="enableSettings()">
+      <mat-icon>settings</mat-icon>{{'Nav.ButtonSettings'|translate}}
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>input</mat-icon>{{'Nav.ButtonLogout'|translate}}
+    </button>
+  </mat-menu>
+  <mat-menu #language="matMenu">
+    <button mat-menu-item (click)="useLanguage('en')">{{'Nav.ButtonEnglish'|translate}}</button>
+    <button mat-menu-item (click)="useLanguage('es')">{{'Nav.ButtonSpanish'|translate}}</button>
+  </mat-menu>
+  <mat-menu #account="matMenu">
+    <button mat-menu-item (click)="gotoChangePassword()">{{'Nav.ButtonChangePassword'|translate}}</button>
+  </mat-menu>
+</mat-toolbar>
